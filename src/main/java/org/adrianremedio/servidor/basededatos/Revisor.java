@@ -3,22 +3,25 @@ package org.adrianremedio.servidor.basededatos;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * Clase que realiza comprobaciones previas a la activación del servidor.
+ */
 public class Revisor {
-    //Creedenciales usuario root:
+    //Creedenciales usuario root.
     private String usuarioRoot = "root";
     private String claveRoot = "MANAGER";
 
-    //Nombre base de datos:
+    //Nombre base de datos.
     private String nombreBBDD = "ActiveMeDatabase";
 
-    //Creedenciales usuario dedicado al servidor:
+    //Creedenciales usuario dedicado al servidor.
     private String usuario = "ActiveMeServer";
     private String clave = "proyectoFDG";
 
-    //Ruta JDBC:
+    //Ruta JDBC.
     private String rutaJDBC = "jdbc:mysql://localhost:3306/";
 
-    //Parámetros globales:
+    //Parámetros globales.
     private Connection conexion = null;
     private Comprobaciones comprobaciones;
 
@@ -29,7 +32,7 @@ public class Revisor {
     public void revisarConexion() {
         System.out.println("\nRealizando comprobación inicial...");
         try {
-            //Intenta conectar como root
+            //Intenta conectar como root.
             if (!realizarConexion(rutaJDBC, "", usuarioRoot, claveRoot)) {
                 throw new Exception("No se ha podido conectar a root para realizar el análisis." +
                         "\nRevisa que las creedenciales de acceso sean correctas.");
@@ -85,7 +88,7 @@ public class Revisor {
      * @param nombreBBDD Nombre de la base de datos.
      * @param usuario    Usuario al que se va a intentar conectar.
      * @param clave      Clave de acceso al usuario.
-     * @return true si consigue conectar; false si no lo consigue.
+     * @return True si consigue conectar; false si no lo consigue.
      */
     private boolean realizarConexion(String rutaJDBC, String nombreBBDD, String usuario, String clave) {
         try {
