@@ -9,7 +9,7 @@ import java.sql.ResultSet;
  */
 public class Comprobaciones {
     //Parámetros globales.
-    private Connection conexion;
+    private final Connection conexion;
     private PreparedStatement sentencia;
     private ResultSet resultado;
 
@@ -82,7 +82,8 @@ public class Comprobaciones {
      */
     protected void otorgarPrivilegiosUsuario(String nombreBBDD, String usuario) {
         try {
-            sentencia = conexion.prepareStatement("GRANT CREATE, INSERT, UPDATE, DELETE, SELECT ON " + nombreBBDD + " TO " + usuario);
+            sentencia = conexion.prepareStatement("GRANT CREATE, INSERT, UPDATE, DELETE, SELECT ON " + nombreBBDD + " TO ?");
+            sentencia.setString(1, usuario);
             sentencia.execute();
         } catch (Exception e) {
             System.err.println("Ha ocurrido un error al otorgar privilegios al usuario " + usuario + ".");
@@ -103,8 +104,7 @@ public class Comprobaciones {
      */
     protected void crearBaseDeDatos(String nombreBBDD) {
         try {
-            sentencia = conexion.prepareStatement("CREATE DATABASE IF NOT EXISTS " + nombreBBDD);
-            sentencia.execute();
+            sentencia.execute("CREATE DATABASE IF NOT EXISTS " + nombreBBDD);
         } catch (Exception e) {
             System.err.println("Ha ocurrido un error al crear la base de datos " + nombreBBDD+ ".");
         }

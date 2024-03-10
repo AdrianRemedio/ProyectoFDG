@@ -8,18 +8,18 @@ import java.sql.DriverManager;
  */
 public class Revisor {
     //Creedenciales usuario root.
-    private String usuarioRoot = "root";
-    private String claveRoot = "MANAGER";
+    private final String usuarioRoot = "root";
+    private final String claveRoot = "MANAGER";
 
     //Nombre base de datos.
-    private String nombreBBDD = "ActiveMeDatabase";
+    private final String nombreBBDD = "ActiveMeDatabase";
 
     //Creedenciales usuario dedicado al servidor.
-    private String usuario = "ActiveMeServer";
-    private String clave = "proyectoFDG";
+    private final String usuario = "ActiveMeServer";
+    private final String clave = "proyectoFDG";
 
     //Ruta JDBC.
-    private String rutaJDBC = "jdbc:mysql://localhost:3306/";
+    private final String rutaJDBC = "jdbc:mysql://localhost:3306/";
 
     //Parámetros globales.
     private Connection conexion = null;
